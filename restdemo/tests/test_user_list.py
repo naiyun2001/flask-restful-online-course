@@ -2,22 +2,22 @@ import json
 
 from restdemo.tests.base import TestBase
 
+
 class TestUser(TestBase):
 
     def test_user_list(self):
         # create user
         url = '/user/{}'.format(self.user_data["username"])
         res = self.client.post(
-            url, 
-            json = self.user_data
+            url,
+            json=self.user_data
         )
-        
         # user login
         url = "/auth/login"
         res = self.client.post(
             url,
-            data = json.dumps({"username": "test","password": "test123"}),
-            headers = {"Content-Type": "application/json"}
+            data=json.dumps({"username": "test", "password": "test123"}),
+            headers={"Content-Type": "application/json"}
         )
         res_data = json.loads(res.get_data(as_text=True))
         access_token = "{} {}".format(
@@ -29,7 +29,7 @@ class TestUser(TestBase):
         url = "/users"
         res = self.client.get(
             url,
-            headers = {"Authorization": access_token}
+            headers={"Authorization": access_token}
         )
         res_data = json.loads(res.get_data(as_text=True))
         self.assertEqual(res.status_code, 200)

@@ -1,5 +1,6 @@
 from restdemo import db
 
+
 class Base(db.Model):
 
     __abstract__ = True     # 表抽象 class, 非正式的 DB Model
@@ -19,5 +20,3 @@ class Base(db.Model):
 
     def update(self):
         db.session.commit()
-
-    

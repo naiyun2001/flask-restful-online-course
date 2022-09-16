@@ -1,6 +1,7 @@
 from datetime import timedelta
 import os
 
+
 class Config:
     # use SQLite
     # SQLALCHEMY_DATABASE_URI = "sqlite:///demo.db"
@@ -20,14 +21,18 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     # (command 設定環境變量) set DATABASE_URL=mysql+pymysql://root:Dreamer_0506@localhost:3306/demo
 
+
 class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"      # 內存DB, 無具體文件
+
 
 class DevelopmentConfig(Config):
     DEBUG = True
 
+
 class ProductionConfig(Config):
     pass
+
 
 app_config = {
     "testing": TestingConfig,

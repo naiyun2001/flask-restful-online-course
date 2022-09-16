@@ -2,6 +2,7 @@ import unittest
 
 from restdemo import db, create_app
 
+
 class TestBase(unittest.TestCase):
 
     # 搭建測試環境

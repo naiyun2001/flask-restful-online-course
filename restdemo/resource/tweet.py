@@ -4,6 +4,7 @@ from flask_jwt import jwt_required, current_identity
 from restdemo.model.user import User as UserModel
 from restdemo.model.tweet import Tweet as TweetModel
 
+
 class Tweet(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument("body", type=str, required=True, help="body required")
@@ -16,7 +17,7 @@ class Tweet(Resource):
         if not user:
             return {"message": "user not found"}, 404
         data = Tweet.parser.parse_args()
-        tweet = TweetModel(user_id = user.id, body = data["body"])
+        tweet = TweetModel(user_id=user.id, body=data["body"])
         tweet.add()
         return {"message": "post success"}
 

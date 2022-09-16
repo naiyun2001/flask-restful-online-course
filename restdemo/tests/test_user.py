@@ -2,14 +2,15 @@ import json
 
 from restdemo.tests.base import TestBase
 
+
 class TestUser(TestBase):
 
     def test_user_create(self):
         url = '/user/{}'.format(self.user_data["username"])
         res = self.client.post(
-            url, 
-            data = json.dumps(self.user_data),
-            headers = {"Content-Type": "application/json"}
+            url,
+            data=json.dumps(self.user_data),
+            headers={"Content-Type": "application/json"}
         )
         self.assertEqual(res.status_code, 201)
         res_data = json.loads(res.get_data(as_text=True))
@@ -18,18 +19,17 @@ class TestUser(TestBase):
 
         res = self.client.post(
             url,
-            json = self.user_data
+            json=self.user_data
         )
         self.assertEqual(res.status_code, 200)
         res_data = json.loads(res.get_data(as_text=True))
         self.assertEqual(res_data.get("message"), "user already exist")
 
-
     def test_user_get(self):
         url = '/user/{}'.format(self.user_data["username"])
         res = self.client.post(
             url,
-            json = self.user_data
+            json=self.user_data
         )
         res = self.client.get(url)
         res_data = json.loads(res.get_data(as_text=True))
@@ -48,7 +48,7 @@ class TestUser(TestBase):
         url = '/user/{}'.format(self.user_data["username"])
         res = self.client.post(
             url,
-            json = self.user_data
+            json=self.user_data
         )
         res = self.client.delete(url)
         res_data = json.loads(res.get_data(as_text=True))
@@ -66,11 +66,11 @@ class TestUser(TestBase):
         url = '/user/{}'.format(self.user_data["username"])
         res = self.client.post(
             url,
-            json = self.user_data
+            json=self.user_data
         )
         res = self.client.put(
             url,
-            json = {
+            json={
                 "password": "newpassword",
                 "email": "newemail@new.com"
             }
@@ -83,7 +83,7 @@ class TestUser(TestBase):
         url = '/user/{}'.format(self.user_data["username"])
         res = self.client.put(
             url,
-            json = {
+            json={
                 "password": "newpassword",
                 "email": "newemail@new.com"
             }

@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from flask import request, current_app
+# from flask import request, current_app
 from flask_jwt import jwt_required
 # import jwt
 
@@ -45,8 +45,8 @@ class User(Resource):
         if user:
             return {"message": "user already exist"}
         user = UserModel(
-            username = username,
-            email = data["email"]
+            username=username,
+            email=data["email"]
         )
         user.set_password(data["password"])
         user.add()
@@ -58,7 +58,7 @@ class User(Resource):
         if user:
             user.delete()
             return {"message": "user deleted"}
-        else:       
+        else:
             return {"message": "user not found"}, 404   # hint message won't be display
 
     def put(self, username):
@@ -72,6 +72,7 @@ class User(Resource):
             return user.as_dict()
         else:
             return {"message": "user not found"}, 404
+
 
 class UserList(Resource):
 

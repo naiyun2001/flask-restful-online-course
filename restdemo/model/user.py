@@ -7,6 +7,7 @@ from sqlalchemy.orm import relationship
 from restdemo import db
 from restdemo.model.base import Base
 
+
 class User(Base):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True)
@@ -24,7 +25,7 @@ class User(Base):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    ''' 
+    '''
     jwt 產生 token
 
     def generate_token(self):

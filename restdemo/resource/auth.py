@@ -21,7 +21,6 @@
 #                 return {
 #                     "message": "login failed, please input the correct username or password."
 #                 }
-            
 #             return {
 #                 "message": "login success.",
 #                 "token": user.generate_token()
